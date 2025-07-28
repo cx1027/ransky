@@ -31,6 +31,7 @@ except ImportError:
         from app.core.config import settings
         app.include_router(api_router, prefix=settings.API_V1_STR)
     except ImportError:
+        print("sys.path",sys.path)
         # If imports fail, add basic endpoints
         @app.get("/")
         async def root():
