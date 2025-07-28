@@ -1,59 +1,36 @@
-import sys
-import os
-from pathlib import Path
+import sentry_sdk
+from fastapi import FastAPI
+from fastapi.routing import APIRoute
+from starlette.middleware.cors import CORSMiddleware
 
-# Add the backend directory to Python path
-backend_dir = Path(__file__).parent.parent
-sys.path.insert(0, str(backend_dir))
-print(sys.path)
+from ..backend.app.api.main import api_router
+from ..backend.app.core.config import settings
 
-try:
-    from backend.app.main import app
-    from backend.app.api.main import api_router
-    from backend.app.core.config import settings
-    from fastapi import FastAPI
-    from starlette.middleware.cors import CORSMiddleware
-    
-    app = FastAPI(title="Ransky API")
-    
-    # Add CORS middleware
+
+def custom_generate_unique_id(route: APIRoute) -> str:
+    if route.tags:
+        return f"{route.tags[0]}-{route.name}"
+    return route.name
+
+
+if settings.SENTRY_DSN and settings.ENVIRONMENT != "local":
+    sentry_sdk.init(dsn=str(settings.SENTRY_DSN), enable_tracing=True)
+
+app = FastAPI(
+    title=settings.PROJECT_NAME,
+    openapi_url=f"{settings.API_V1_STR}/openapi.json",
+    generate_unique_id_function=custom_generate_unique_id,
+)
+
+# Set all CORS enabled origins
+if settings.all_cors_origins:
     app.add_middleware(
         CORSMiddleware,
+        # allow_origins=settings.all_cors_origins,
         allow_origins=["*"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
-        
-    app.include_router(api_router, prefix=settings.API_V1_STR)
-    
-# except ImportError:
-#     # Fallback: create a minimal FastAPI app if imports fail
-#     from fastapi import FastAPI
-#     from starlette.middleware.cors import CORSMiddleware
-    
-#     app = FastAPI(title="Ransky API")
-    
-#     # Add CORS middleware
-#     app.add_middleware(
-#         CORSMiddleware,
-#         allow_origins=["*"],
-#         allow_credentials=True,
-#         allow_methods=["*"],
-#         allow_headers=["*"],
-#     )
-    
-   
-        
-except ImportError:
-    print("sys.path",sys.path)
-    # If imports fail, add basic endpoints
-    @app.get("/")
-    async def root():
-        return {"message": "Ransky API is running"}
-    
-    @app.get("/health")
-    async def health():
-        return {"status": "healthy"}
 
-# This file serves as the entry point for Vercel serverless functions
+app.include_router(api_router, prefix=settings.API_V1_STR)
