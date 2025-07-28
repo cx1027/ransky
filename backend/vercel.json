@@ -1,22 +1,16 @@
 {
     "version": 2,
-
     "functions": {
-
-        "api/**": {
-
-        "excludeFiles": "{.next,*.cache,node_modules,public,app}/**"
+        "api/index.py": {
+            "runtime": "python3.9"
         }
     },
-
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "app/main.py"
+            "dest": "api/index.py"
         }
     ]
-    
-      
 }
 
 
