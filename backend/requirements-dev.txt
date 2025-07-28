@@ -15,5 +15,9 @@ pydantic-settings>=2.2.1,<3.0.0
 sentry-sdk
 pyjwt>=2.8.0,<3.0.0
 jsbeautifier
+langchain
+groq
+langchain_openai
+langchain_community
 pytz
-docx2txt 
+docx2txt
