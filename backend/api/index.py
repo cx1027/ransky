@@ -3,13 +3,12 @@ import os
 from pathlib import Path
 
 # Add the backend directory to Python path
-backend_dir = Path(__file__).parent.parent
-sys.path.insert(0, str(backend_dir))
+sys.path.append('../app')
 
 try:
-    from ..app.main import app
-    from ..app.api.main import api_router
-    from ..app.core.config import settings
+    from app.main import app
+    from app.api.main import api_router
+    from app.core.config import settings
 except ImportError:
     # Fallback: create a minimal FastAPI app if imports fail
     from fastapi import FastAPI

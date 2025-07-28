@@ -1,14 +1,14 @@
 {
     "version": 2,
     "functions": {
-        "app/main.py": {
+        "api/index.py": {
             "excludeFiles": "{.next,*.cache,node_modules,public,app,__pycache__,.venv,venv,env,.git,.vercel,upload,alembic,*.pyc,*.pyo,*.pyd,.pytest_cache,.coverage,htmlcov,dist,build,*.egg-info}/**"
         }
     },
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "app/main.py"
+            "dest": "api/index.py"
         }
     ]
 }
