@@ -8,6 +8,8 @@ sys.path.insert(0, str(backend_dir))
 
 try:
     from ..app.main import app
+    from ..app.api.main import api_router
+    from ..app.core.config import settings
 except ImportError:
     # Fallback: create a minimal FastAPI app if imports fail
     from fastapi import FastAPI
