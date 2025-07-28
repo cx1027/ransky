@@ -9,6 +9,20 @@ try:
     from app.main import app
     from app.api.main import api_router
     from app.core.config import settings
+    
+    app = FastAPI(title="Ransky API")
+    
+    # Add CORS middleware
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+    
+    app.include_router(api_router, prefix=settings.API_V1_STR)
+    
 except ImportError:
     # Fallback: create a minimal FastAPI app if imports fail
     from fastapi import FastAPI
@@ -26,6 +40,10 @@ except ImportError:
     )
     
     app.include_router(api_router, prefix=settings.API_V1_STR)
+    
+    @app.get("/")
+    async def root():
+        return {"message": "Ransky API is running"}
     
     # Try to import and include the router
     try:
