@@ -7,6 +7,8 @@ import sys
 import os
 from pathlib import Path
 
+from app.api.main import api_router
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
