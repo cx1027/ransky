@@ -1,11 +1,14 @@
 {
     "version": 2,
-    "builds": [
-        {
-            "src": "app/main.py",
-            "use": "@vercel/python"
+
+    "functions": {
+
+        "app/**": {
+
+        "excludeFiles": "{.next,*.cache,node_modules,public,app}/**"
         }
-    ],
+    },
+
     "routes": [
         {
             "src": "/(.*)",
@@ -15,3 +18,5 @@
     
       
 }
+
+
