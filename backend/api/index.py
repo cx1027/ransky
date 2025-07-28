@@ -8,7 +8,7 @@ sys.path.insert(0, str(backend_dir))
 print(sys.path)
 
 try:
-    from app.main import app
+    from backend.app.main import app
 except ImportError:
     # Fallback: create a minimal FastAPI app if imports fail
     from fastapi import FastAPI
@@ -27,8 +27,8 @@ except ImportError:
     
     # Try to import and include the router
     try:
-        from app.api.main import api_router
-        from app.core.config import settings
+        from backend.app.api.main import api_router
+        from backend.app.core.config import settings
         app.include_router(api_router, prefix=settings.API_V1_STR)
     except ImportError:
         print("sys.path",sys.path)
