@@ -19,8 +19,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 logger.info(f"Updated Python path: {sys.path}")
 
 try:
-    from backend.app.api.main import api_router
-    from backend.app.core.config import settings
+    from app.api.main import api_router
+    from app.core.config import settings
     logger.info("Successfully imported api_router and settings")
 except ImportError as e:
     logger.error(f"Failed to import modules: {e}")
