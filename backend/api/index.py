@@ -7,7 +7,7 @@ backend_dir = Path(__file__).parent.parent
 sys.path.insert(0, str(backend_dir))
 
 try:
-    from app.main import app
+    from ..app.main import app
 except ImportError:
     # Fallback: create a minimal FastAPI app if imports fail
     from fastapi import FastAPI
