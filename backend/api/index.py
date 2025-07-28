@@ -5,6 +5,7 @@ from starlette.middleware.cors import CORSMiddleware
 import logging
 import sys
 import os
+from ..app.api.routes import items, jobs, login, private, users, utils
 
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(root_dir)
