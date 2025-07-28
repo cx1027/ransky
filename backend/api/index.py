@@ -5,28 +5,30 @@ from starlette.middleware.cors import CORSMiddleware
 import logging
 import sys
 import os
-from app.api.routes import items, jobs, login, private, users, utils
+from pathlib import Path
 
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-sys.path.append(root_dir)
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Log the current working directory and Python path
-logger.info(f"Current working directory: {os.getcwd()}")
+# Method 1: Navigate to parent, then to sibling folder
+current_file = Path(__file__)
+parent_dir = current_file.parent.parent  # Go up to parent
+sibling_dir = parent_dir / "app"  # Go to sibling folder "app"
+sys.path.insert(0, str(parent_dir))  # Add parent to path
+
+logger.info(f"Current file: {current_file}")
+logger.info(f"Parent directory: {parent_dir}")
+logger.info(f"Sibling directory: {sibling_dir}")
 logger.info(f"Python path: {sys.path}")
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
-logger.info(f"Updated Python path: {sys.path}")
-
 try:
+    # Now we can import from sibling folder
     from app.api.main import api_router
     from app.core.config import settings
-    logger.info("Successfully imported api_router and settings")
+    logger.info("Successfully imported from sibling folder")
 except ImportError as e:
-    logger.error(f"Failed to import modules: {e}")
+    logger.error(f"Failed to import from sibling folder: {e}")
     raise
 
 def custom_generate_unique_id(route: APIRoute) -> str:
