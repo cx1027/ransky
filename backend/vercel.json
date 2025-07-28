@@ -3,7 +3,7 @@
 
     "functions": {
 
-        "app/**": {
+        "api/**": {
 
         "excludeFiles": "{.next,*.cache,node_modules,public,app}/**"
         }
