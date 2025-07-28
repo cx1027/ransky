@@ -6,9 +6,9 @@ from pathlib import Path
 sys.path.append('../app')
 
 try:
-    from app.main import app
-    from app.api.main import api_router
-    from app.core.config import settings
+    from main import app
+    from api.main import api_router
+    from core.config import settings
     
     app = FastAPI(title="Ransky API")
     
