@@ -6,6 +6,8 @@ import logging
 import sys
 import os
 
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.append(root_dir)
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
