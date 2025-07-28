@@ -10,7 +10,10 @@
             "src": "/(.*)",
             "dest": "api/index.py"
         }
-    ]
+    ],
+    
+    "buildCommand": "python build_script.py"
+    
 }
 
 
