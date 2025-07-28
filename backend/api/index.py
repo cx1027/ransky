@@ -1,6 +1,8 @@
 import sys
 import os
 from pathlib import Path
+from app.api.main import api_router
+from app.core.config import settings
 
 # Add the backend directory to Python path
 backend_dir = Path(__file__).parent.parent
@@ -24,12 +26,14 @@ except ImportError:
         allow_headers=["*"],
     )
     
-    @app.get("/")
-    async def root():
-        return {"message": "Ransky API is running"}
+    app.include_router(api_router, prefix=settings.API_V1_STR)
     
-    @app.get("/health")
-    async def health():
-        return {"status": "healthy"}
+    # @app.get("/")
+    # async def root():
+    #     return {"message": "Ransky API is running"}
+    
+    # @app.get("/health")
+    # async def health():
+    #     return {"status": "healthy"}
 
 # This file serves as the entry point for Vercel serverless functions 
