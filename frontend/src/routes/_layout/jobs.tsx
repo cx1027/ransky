@@ -1,4 +1,4 @@
-import React from "react"
+
 import {
   Container,
   EmptyState,
@@ -141,6 +141,7 @@ function Jobs() {
                             id: job.id,
                             title: job.title,
                             description: job.description || null,
+                            created_at: job.created_at,
                           }}
                         />
                       </Table.Cell>

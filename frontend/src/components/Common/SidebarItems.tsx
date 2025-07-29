@@ -1,11 +1,9 @@
 import { Box, Flex, Icon, Text } from "@chakra-ui/react"
 import { useQueryClient } from "@tanstack/react-query"
 import { Link as RouterLink, useMatchRoute } from "@tanstack/react-router"
-import { FiBriefcase, FiFileText, FiHome, FiSettings, FiUsers, FiClipboard, FiEdit } from "react-icons/fi"
+import { FiHome, FiSettings, FiUsers, FiClipboard, FiEdit } from "react-icons/fi"
 import type { IconType } from "react-icons/lib"
-import { useSearch } from "@tanstack/react-router"
 import { useRouter } from "@tanstack/react-router"
-import { useSyncExternalStore } from "react"
 
 import type { UserPublic } from "@/client"
 

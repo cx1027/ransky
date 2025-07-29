@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import {
   Container,
   Heading,
@@ -8,7 +8,6 @@ import {
   Flex,
   Button,
   Badge,
-  Box,
 } from "@chakra-ui/react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
@@ -75,7 +74,7 @@ export const Route = createFileRoute("/_layout/job-list")({
 
 function JobList() {
   const navigate = useNavigate()
-  const { page, title, description, created_date } = Route.useSearch()
+  const { page } = Route.useSearch()
   const { data: jobsData, isLoading } = useQuery(Route.useLoaderData())
   const [selectedJobs, setSelectedJobs] = useState<string[]>([])
   const [jobCandidates, setJobCandidates] = useState<Record<string, Array<{name: string, score: number}>>>({})

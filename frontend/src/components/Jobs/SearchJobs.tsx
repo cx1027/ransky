@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { FaSearch } from "react-icons/fa"
 import { useNavigate, useSearch } from "@tanstack/react-router"
 
 import { Button, Input, VStack } from "@chakra-ui/react"
 import {
-  DialogActionTrigger,
   DialogBody,
   DialogCloseTrigger,
   DialogContent,
@@ -33,7 +32,7 @@ const SearchJobs = ({ route = "/_layout/job-editing-list" }: SearchJobsProps) =>
   const search = useSearch({
     from: route,
   })
-  const { page, title, description, created_date } = search
+  const { title, description, created_date } = search
 
   const {
     register,

@@ -1,4 +1,3 @@
-import React from "react"
 import { Skeleton, Table } from "@chakra-ui/react"
 
 const PER_PAGE = 5

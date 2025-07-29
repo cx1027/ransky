@@ -5,7 +5,6 @@ import {
   VStack,
   HStack,
   Input,
-  Textarea,
   Button,
   Table,
   Text,
@@ -823,7 +822,7 @@ const JobEditing = () => {
     let list = sortedCandidates
     const { name, contact, cv, created, score, summary } = appliedCandidateSearch
     // Parse score operator and value
-    let scoreOp = null, scoreVal = null
+    let scoreOp: string | null = null, scoreVal: number | null = null
     if (score) {
       const match = score.match(/^([><=]?)(\d+(?:\.\d+)?)$/)
       if (match) {

@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import { useQueryClient } from "@tanstack/react-query"
+import { useState } from "react"
 import { IconButton } from "@chakra-ui/react"
 import { BsThreeDotsVertical } from "react-icons/bs"
 import { useNavigate } from "@tanstack/react-router"
@@ -18,7 +17,7 @@ interface JobActionsMenuProps {
 
 const JobActionsMenu = ({ job }: JobActionsMenuProps) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
-  const queryClient = useQueryClient()
+
   const navigate = useNavigate()
 
   const handleClose = () => {

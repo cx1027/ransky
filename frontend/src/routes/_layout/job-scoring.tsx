@@ -5,13 +5,11 @@ import {
   VStack,
   HStack,
   Input,
-  Textarea,
   Button,
   Table,
   Text,
   Box,
   Badge,
-  Progress,
 } from "@chakra-ui/react"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
@@ -810,7 +808,7 @@ const JobScoring = () => {
     let list = sortedCandidates
     const { name, contact, cv, created, score, summary } = appliedCandidateSearch
     // Parse score operator and value
-    let scoreOp = null, scoreVal = null
+    let scoreOp: string | null = null, scoreVal: number | null = null
     if (score) {
       const match = score.match(/^([><=]?)(\d+(?:\.\d+)?)$/)
       if (match) {
