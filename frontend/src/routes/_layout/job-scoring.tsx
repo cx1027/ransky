@@ -547,7 +547,7 @@ const JobScoring = () => {
     // Start at 20%
     onProgress(20);
     const response = await axios.post(
-      "http://localhost:8000/api/v1/candidate/analyse_candidate",
+      "https://ransky-backend.onrender.com/api/v1/candidate/analyse_candidate",
       formData,
       {
         headers: { "Content-Type": "multipart/form-data" },
