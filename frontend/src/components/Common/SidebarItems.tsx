@@ -49,34 +49,38 @@ const SidebarItems = ({ onClose, compact = false }: SidebarItemsProps) => {
     }
     if (path === "/job-scoring") {
       return (
-        <Flex
+        <Box
           key={title}
           as="button"
           onClick={() => {
             router.navigate({ to: "/job-scoring", search: {} }) // force clear jobId
             if (onClose) onClose()
           }}
-          gap={compact ? 0 : 4}
-          px={compact ? 0 : 4}
-          py={2}
-          justifyContent="center"
-          alignItems="center"
-          fontSize="xl"
-          flexDirection="column"
-          bg={isActive ? "gray.100" : undefined}
-          color={isActive ? "black" : undefined}
-          _hover={{
-            background: isActive ? "gray.100" : "gray.subtle",
-          }}
-          borderRadius="md"
+          style={{ display: 'block', width: '100%' }}
         >
-          <Icon as={icon} alignSelf="center" boxSize={6} />
-          {!compact && (
-            <Text ml={2} fontSize="sm" fontWeight={isActive ? "bold" : undefined}>
-              {title}
-            </Text>
-          )}
-        </Flex>
+          <Flex
+            gap={compact ? 0 : 4}
+            px={compact ? 0 : 4}
+            py={2}
+            justifyContent="center"
+            alignItems="center"
+            fontSize="xl"
+            flexDirection="column"
+            bg={isActive ? "gray.100" : undefined}
+            color={isActive ? "black" : undefined}
+            _hover={{
+              background: isActive ? "gray.100" : "gray.subtle",
+            }}
+            borderRadius="md"
+          >
+            <Icon as={icon} alignSelf="center" boxSize={6} />
+            {!compact && (
+              <Text ml={2} fontSize="sm" fontWeight={isActive ? "bold" : undefined}>
+                {title}
+              </Text>
+            )}
+          </Flex>
+        </Box>
       )
     }
     return (
