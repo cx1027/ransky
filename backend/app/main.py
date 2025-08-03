@@ -23,14 +23,19 @@ app = FastAPI(
 )
 
 # Set all CORS enabled origins
-if settings.all_cors_origins:
-    app.add_middleware(
-        CORSMiddleware,
-        # allow_origins=settings.all_cors_origins,
-        allow_origins=["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:3000", 
+        "https://ransky-frontend.onrender.com",
+        "https://ransky-frontend.vercel.app",
+        "https://ransky-frontend.netlify.app",
+        # Add any other frontend URLs you might use
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
